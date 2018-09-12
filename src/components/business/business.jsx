@@ -9,6 +9,8 @@ class Business extends React.Component {
     complete: []
   };
 
+  componentDidMount() {}
+
   render() {
     return (
       <div>
