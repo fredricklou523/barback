@@ -45,7 +45,7 @@ class Item extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
+    // e.preventDefault();
     this.props.checkOutUpdate(this.state);
   }
 

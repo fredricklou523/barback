@@ -30,7 +30,7 @@ class App extends React.Component {
     this.setState({
       checkout: Object.assign({}, this.state.checkout, { drinkOrder: drinks })
     });
-    console.log(this.state.checkout);
+    console.log(this.state);
   }
 
   componentDidMount() {
