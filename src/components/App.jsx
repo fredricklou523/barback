@@ -22,9 +22,16 @@ class App extends React.Component {
         // }
       ]
     },
+    search: "",
     modal: ""
   };
 
+  componentDidMount() {
+    this.getMenu();
+    this.getCustomerOrders();
+  }
+
+  // called when adding drink(s) to your order for checkout
   checkOutUpdate(order) {
     let drinks = this.state.checkout.drinkOrder;
     drinks.push(order);
@@ -33,9 +40,13 @@ class App extends React.Component {
     });
   }
 
-  componentDidMount() {
-    this.getMenu();
-    this.getCustomerOrders();
+  // handle live search
+  handleSearchOnKeyUp(e) {
+    if (e.key !== "Enter") {
+      this.setState({
+        search: e.target.value
+      });
+    }
   }
 
   // retreive business menu from db
@@ -57,6 +68,7 @@ class App extends React.Component {
         this.setState({
           orders: response.data
         });
+        //setTimeout(this.getCustomerOrders(), 2000);
       });
   }
 
@@ -87,13 +99,14 @@ class App extends React.Component {
         <h1>Title</h1>
         <div id="test" />
         <nav>
-          <Search />{" "}
+          <Search handleSearch={this.handleSearchOnKeyUp.bind(this)} />{" "}
           <button onClick={() => this.changeModal("checkout")}>Checkout</button>
         </nav>
         <Orders currentOrders={this.state.orders} />
         <Menu
           menuItems={this.state.menu}
           checkOutUpdate={this.checkOutUpdate.bind(this)}
+          search={this.state.search.toLowerCase()}
         />
         <div>{this.renderModal()}</div>
       </div>
