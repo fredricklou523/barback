@@ -6,6 +6,7 @@ import Search from "./customer/search.jsx";
 import Orders from "./customer/orders.jsx";
 import Menu from "./customer/menu.jsx";
 import Checkout from "./customer/checkout.jsx";
+import Header from "./customer/Header.jsx";
 class App extends React.Component {
   state = {
     menu: {},
